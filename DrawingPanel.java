@@ -23,6 +23,9 @@ public class DrawingPanel extends JPanel {
     private boolean isResizing;
     private boolean isMoving;
     private int lastX, lastY;
+    private boolean isSelecting = false;
+    private boolean isDrawing = false;
+    private boolean isFirstClick = true;
     
     public DrawingPanel() {
         layers = new ArrayList<>();
@@ -37,6 +40,9 @@ public class DrawingPanel extends JPanel {
         selectedShape = null;
         isResizing = false;
         isMoving = false;
+        isSelecting = false;
+        isDrawing = false;
+        isFirstClick = true;
         
         setBackground(Color.WHITE);
         setFocusable(true);
@@ -50,90 +56,101 @@ public class DrawingPanel extends JPanel {
                 lastX = startX;
                 lastY = startY;
                 
-                // Check if clicking on an existing shape in any layer
-                for (int i = layers.size() - 1; i >= 0; i--) {
-                    Layer layer = layers.get(i);
-                    if (layer.isVisible()) {
-                        Shape shape = layer.getShapeAt(startX, startY);
-                        if (shape != null) {
-                            // Deselect previously selected shape
-                            if (selectedShape != null) {
-                                selectedShape.setSelected(false);
+                if (currentShape.equals("Select")) {
+                    // Selection mode
+                    boolean clickedOnShape = false;
+                    for (int i = layers.size() - 1; i >= 0; i--) {
+                        Layer layer = layers.get(i);
+                        if (layer.isVisible()) {
+                            Shape shape = layer.getShapeAt(startX, startY);
+                            if (shape != null) {
+                                clickedOnShape = true;
+                                // Deselect previously selected shape
+                                if (selectedShape != null) {
+                                    selectedShape.setSelected(false);
+                                }
+                                
+                                selectedShape = shape;
+                                selectedShape.setSelected(true);
+                                currentLayer = layer;
+                                
+                                // Check if clicking on resize handle
+                                if (shape.isResizeHandle(startX, startY)) {
+                                    isResizing = true;
+                                } else {
+                                    isMoving = true;
+                                }
+                                
+                                repaint();
+                                break;
                             }
-                            
-                            selectedShape = shape;
-                            selectedShape.setSelected(true);
-                            currentLayer = layer;
-                            
-                            // Check if clicking on resize handle
-                            if (shape.isResizeHandle(startX, startY)) {
-                                isResizing = true;
-                            } else {
-                                isMoving = true;
-                            }
-                            
-                            repaint();
-                            return;
                         }
                     }
-                }
-                
-                // If not clicking on a shape, deselect current shape
-                if (selectedShape != null) {
-                    selectedShape.setSelected(false);
-                    selectedShape = null;
-                    repaint();
-                }
-                
-                // Start drawing new shape in current layer
-                if (currentLayer != null) {
-                    switch (currentShape) {
-                        case "Circle":
-                            currentDrawing = new Circle(currentColor, startX, startY, startX, startY, filled);
-                            break;
-                        case "Rectangle":
-                            currentDrawing = new Rectangle(currentColor, startX, startY, startX, startY, filled);
-                            break;
-                        case "Image":
-                            if (currentImage != null) {
-                                currentDrawing = new ImageShape(currentImage, startX, startY, startX, startY);
-                            }
-                            break;
-                        case "Text":
-                            if (!currentText.isEmpty()) {
-                                currentDrawing = new TextShape(currentText, currentColor, startX, startY, currentFont);
-                                currentLayer.addShape(currentDrawing);
-                                saveState();
-                                currentDrawing = null;
-                                repaint();
-                            } else {
-                                // If no text is entered, show a dialog to input text
-                                String text = JOptionPane.showInputDialog(this, "Enter text:");
-                                if (text != null && !text.isEmpty()) {
-                                    currentText = text;
+                    
+                    // If not clicking on a shape, deselect current shape
+                    if (!clickedOnShape && selectedShape != null) {
+                        selectedShape.setSelected(false);
+                        selectedShape = null;
+                        repaint();
+                    }
+                } else {
+                    // Drawing mode
+                    if (selectedShape != null) {
+                        selectedShape.setSelected(false);
+                        selectedShape = null;
+                    }
+                    
+                    if (currentLayer != null) {
+                        isDrawing = true;
+                        switch (currentShape) {
+                            case "Circle":
+                                currentDrawing = new Circle(currentColor, startX, startY, startX, startY, filled);
+                                break;
+                            case "Rectangle":
+                                currentDrawing = new Rectangle(currentColor, startX, startY, startX, startY, filled);
+                                break;
+                            case "Image":
+                                if (currentImage != null) {
+                                    currentDrawing = new ImageShape(currentImage, startX, startY, startX, startY);
+                                }
+                                break;
+                            case "Text":
+                                if (!currentText.isEmpty()) {
                                     currentDrawing = new TextShape(currentText, currentColor, startX, startY, currentFont);
                                     currentLayer.addShape(currentDrawing);
                                     saveState();
                                     currentDrawing = null;
                                     repaint();
+                                } else {
+                                    // If no text is entered, show a dialog to input text
+                                    String text = JOptionPane.showInputDialog(this, "Enter text:");
+                                    if (text != null && !text.isEmpty()) {
+                                        currentText = text;
+                                        currentDrawing = new TextShape(currentText, currentColor, startX, startY, currentFont);
+                                        currentLayer.addShape(currentDrawing);
+                                        saveState();
+                                        currentDrawing = null;
+                                        repaint();
+                                    }
                                 }
-                            }
-                            break;
-                        default:
-                            currentDrawing = new Line(currentColor, startX, startY, startX, startY, filled);
+                                break;
+                            default:
+                                currentDrawing = new Line(currentColor, startX, startY, startX, startY, filled);
+                        }
                     }
                 }
             }
             
             public void mouseReleased(MouseEvent e) {
-                if (currentDrawing != null && !currentShape.equals("Text") && currentLayer != null) {
+                if (isDrawing && currentDrawing != null && !currentShape.equals("Text") && currentLayer != null) {
                     currentLayer.addShape(currentDrawing);
                     saveState();
                     currentDrawing = null;
-                    repaint();
                 }
                 isResizing = false;
                 isMoving = false;
+                isDrawing = false;
+                repaint();
             }
         });
         
@@ -143,7 +160,7 @@ public class DrawingPanel extends JPanel {
                 int x = e.getX();
                 int y = e.getY();
                 
-                if (selectedShape != null) {
+                if (currentShape.equals("Select") && selectedShape != null) {
                     if (isResizing) {
                         selectedShape.setEndPoint(x, y);
                     } else if (isMoving) {
@@ -152,7 +169,7 @@ public class DrawingPanel extends JPanel {
                     lastX = x;
                     lastY = y;
                     repaint();
-                } else if (currentDrawing != null && !currentShape.equals("Text")) {
+                } else if (isDrawing && currentDrawing != null && !currentShape.equals("Text")) {
                     currentDrawing.setEndPoint(x, y);
                     repaint();
                 }

@@ -168,7 +168,7 @@ public class DrawingApp extends JFrame {
         toolBar.setFloatable(false);
         
         // Shape buttons
-        String[] shapes = {"Line", "Rectangle", "Circle", "Text"};
+        String[] shapes = {"Select", "Line", "Rectangle", "Circle", "Text"};
         ButtonGroup shapeGroup = new ButtonGroup();
         
         for (String shape : shapes) {
