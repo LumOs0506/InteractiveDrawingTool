@@ -1,4 +1,4 @@
-# Drawing Application
+# Interactive Drawing Tool
 
 A Java-based drawing application with layer support, similar to basic image editing software. This application allows users to create and edit drawings with multiple layers, various shapes, and text.
 
