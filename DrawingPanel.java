@@ -23,6 +23,7 @@ public class DrawingPanel extends JPanel {
     private boolean isResizing;
     private boolean isMoving;
     private int lastX, lastY;
+    private float currentStrokeWidth = 1.0f;
     
     public DrawingPanel() {
         layers = new ArrayList<>();
@@ -119,8 +120,18 @@ public class DrawingPanel extends JPanel {
                                 }
                             }
                             break;
+                        case "Free":
+                            currentDrawing = new FreeDrawing(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing.setStrokeWidth(currentStrokeWidth);
+                            break;
                         default:
                             currentDrawing = new Line(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing.setStrokeWidth(currentStrokeWidth);
+                    }
+                    
+                    // 设置线条粗细
+                    if (currentDrawing != null) {
+                        currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
                 }
             }
@@ -303,5 +314,19 @@ public class DrawingPanel extends JPanel {
     
     public Color getCurrentColor() {
         return currentColor;
+    }
+    
+    // 添加设置线条粗细的方法
+    public void setStrokeWidth(float width) {
+        this.currentStrokeWidth = width;
+        if (selectedShape != null) {
+            selectedShape.setStrokeWidth(width);
+            repaint();
+        }
+    }
+    
+    // 添加获取当前线条粗细的方法
+    public float getStrokeWidth() {
+        return currentStrokeWidth;
     }
 } 

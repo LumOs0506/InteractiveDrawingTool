@@ -7,6 +7,7 @@ public abstract class Shape implements Serializable {
     protected boolean filled;
     protected boolean selected;
     protected static final int HANDLE_SIZE = 8;
+    protected float strokeWidth = 1.0f;
     
     public Shape(Color color, int x1, int y1, int x2, int y2, boolean filled) {
         this.color = color;
@@ -46,6 +47,14 @@ public abstract class Shape implements Serializable {
         y1 += dy;
         x2 += dx;
         y2 += dy;
+    }
+    
+    public void setStrokeWidth(float width) {
+        this.strokeWidth = width;
+    }
+    
+    public float getStrokeWidth() {
+        return strokeWidth;
     }
     
     public boolean containsPoint(int x, int y) {
