@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
@@ -26,6 +27,16 @@ public class DrawingPanel extends JPanel {
     private float currentStrokeWidth = 1.0f;
     private boolean selectMode = false;
     
+    // Canvas navigation properties
+    private double zoomFactor = 1.0;
+    private int panX = 0;
+    private int panY = 0;
+    private boolean isPanning = false;
+    private int panStartX, panStartY;
+    private static final double MIN_ZOOM = 0.1;
+    private static final double MAX_ZOOM = 5.0;
+    private static final double ZOOM_STEP = 0.1;
+    
     public DrawingPanel() {
         layers = new ArrayList<>();
         undoStack = new Stack<>();
@@ -44,19 +55,35 @@ public class DrawingPanel extends JPanel {
         setFocusable(true);
         requestFocusInWindow();
         
+        // Mouse listener for drawing and selection
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 requestFocusInWindow();
-                startX = e.getX();
-                startY = e.getY();
+                
+                // Convert screen coordinates to canvas coordinates
+                int canvasX = screenToCanvasX(e.getX());
+                int canvasY = screenToCanvasY(e.getY());
+                
+                startX = canvasX;
+                startY = canvasY;
                 lastX = startX;
                 lastY = startY;
+                
+                // Start panning with space + drag or middle mouse button
+                if (e.getButton() == MouseEvent.BUTTON2 || 
+                    (e.isControlDown() && e.isShiftDown())) {
+                    isPanning = true;
+                    panStartX = e.getX();
+                    panStartY = e.getY();
+                    setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+                    return;
+                }
                 
                 if (selectMode || e.isControlDown()) {
                     for (int i = layers.size() - 1; i >= 0; i--) {
                         Layer layer = layers.get(i);
                         if (layer.isVisible()) {
-                            Shape shape = layer.getShapeAt(startX, startY);
+                            Shape shape = layer.getShapeAt(canvasX, canvasY);
                             if (shape != null) {
                                 if (selectedShape != null) {
                                     selectedShape.setSelected(false);
@@ -66,7 +93,7 @@ public class DrawingPanel extends JPanel {
                                 selectedShape.setSelected(true);
                                 currentLayer = layer;
                                 
-                                if (shape.isResizeHandle(startX, startY)) {
+                                if (shape.isResizeHandle(canvasX, canvasY)) {
                                     isResizing = true;
                                 } else {
                                     isMoving = true;
@@ -92,19 +119,19 @@ public class DrawingPanel extends JPanel {
                 if (currentLayer != null && !selectMode) {
                     switch (currentShape) {
                         case "Circle":
-                            currentDrawing = new Circle(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing = new Circle(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             break;
                         case "Rectangle":
-                            currentDrawing = new Rectangle(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing = new Rectangle(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             break;
                         case "Image":
                             if (currentImage != null) {
-                                currentDrawing = new ImageShape(currentImage, startX, startY, startX, startY);
+                                currentDrawing = new ImageShape(currentImage, canvasX, canvasY, canvasX, canvasY);
                             }
                             break;
                         case "Text":
                             if (!currentText.isEmpty()) {
-                                currentDrawing = new TextShape(currentText, currentColor, startX, startY, currentFont);
+                                currentDrawing = new TextShape(currentText, currentColor, canvasX, canvasY, currentFont);
                                 currentLayer.addShape(currentDrawing);
                                 saveState();
                                 currentDrawing = null;
@@ -113,7 +140,7 @@ public class DrawingPanel extends JPanel {
                                 String text = JOptionPane.showInputDialog(this, "Enter text:");
                                 if (text != null && !text.isEmpty()) {
                                     currentText = text;
-                                    currentDrawing = new TextShape(currentText, currentColor, startX, startY, currentFont);
+                                    currentDrawing = new TextShape(currentText, currentColor, canvasX, canvasY, currentFont);
                                     currentLayer.addShape(currentDrawing);
                                     saveState();
                                     currentDrawing = null;
@@ -122,11 +149,11 @@ public class DrawingPanel extends JPanel {
                             }
                             break;
                         case "Free":
-                            currentDrawing = new FreeDrawing(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing = new FreeDrawing(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             currentDrawing.setStrokeWidth(currentStrokeWidth);
                             break;
                         default:
-                            currentDrawing = new Line(currentColor, startX, startY, startX, startY, filled);
+                            currentDrawing = new Line(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
                     
@@ -137,6 +164,12 @@ public class DrawingPanel extends JPanel {
             }
             
             public void mouseReleased(MouseEvent e) {
+                if (isPanning) {
+                    isPanning = false;
+                    setCursor(Cursor.getDefaultCursor());
+                    return;
+                }
+                
                 if (currentDrawing != null && !currentShape.equals("Text") && currentLayer != null) {
                     currentLayer.addShape(currentDrawing);
                     saveState();
@@ -148,36 +181,165 @@ public class DrawingPanel extends JPanel {
             }
         });
         
+        // Mouse motion listener for drawing, selection and panning
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
                 requestFocusInWindow();
-                int x = e.getX();
-                int y = e.getY();
+                
+                // Handle panning
+                if (isPanning) {
+                    int dx = e.getX() - panStartX;
+                    int dy = e.getY() - panStartY;
+                    panX += dx;
+                    panY += dy;
+                    panStartX = e.getX();
+                    panStartY = e.getY();
+                    repaint();
+                    return;
+                }
+                
+                // Convert screen coordinates to canvas coordinates
+                int canvasX = screenToCanvasX(e.getX());
+                int canvasY = screenToCanvasY(e.getY());
                 
                 if (selectedShape != null) {
                     if (isResizing) {
-                        selectedShape.setEndPoint(x, y);
+                        selectedShape.setEndPoint(canvasX, canvasY);
                     } else if (isMoving) {
-                        selectedShape.move(x - lastX, y - lastY);
+                        selectedShape.move(canvasX - lastX, canvasY - lastY);
                     }
-                    lastX = x;
-                    lastY = y;
+                    lastX = canvasX;
+                    lastY = canvasY;
                     repaint();
                 } else if (currentDrawing != null && !currentShape.equals("Text")) {
-                    currentDrawing.setEndPoint(x, y);
+                    currentDrawing.setEndPoint(canvasX, canvasY);
                     repaint();
                 }
             }
         });
         
-        addKeyListener(new KeyAdapter() {
+        // Mouse wheel listener for zooming
+        addMouseWheelListener(new MouseWheelListener() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                if ((e.getKeyCode() == KeyEvent.VK_BACK_SPACE || e.getKeyCode() == KeyEvent.VK_DELETE) && selectedShape != null && currentLayer != null) {
-                    deleteSelectedShape();
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                // Zoom in/out with Ctrl + mouse wheel
+                if (e.isControlDown()) {
+                    int wheelRotation = e.getWheelRotation();
+                    
+                    // Get mouse position for zoom centering
+                    int mouseX = e.getX();
+                    int mouseY = e.getY();
+                    
+                    // Convert to canvas coordinates before zoom
+                    double oldCanvasX = (mouseX - panX) / zoomFactor;
+                    double oldCanvasY = (mouseY - panY) / zoomFactor;
+                    
+                    // Adjust zoom factor
+                    if (wheelRotation < 0) {
+                        // Zoom in
+                        zoomFactor = Math.min(MAX_ZOOM, zoomFactor + ZOOM_STEP);
+                    } else {
+                        // Zoom out
+                        zoomFactor = Math.max(MIN_ZOOM, zoomFactor - ZOOM_STEP);
+                    }
+                    
+                    // Calculate new screen position for the same canvas point
+                    double newScreenX = oldCanvasX * zoomFactor + panX;
+                    double newScreenY = oldCanvasY * zoomFactor + panY;
+                    
+                    // Adjust pan to keep mouse position stable
+                    panX += (mouseX - newScreenX);
+                    panY += (mouseY - newScreenY);
+                    
+                    repaint();
                 }
             }
         });
+        
+        // Key listener for keyboard shortcuts
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // Delete selected shape
+                if ((e.getKeyCode() == KeyEvent.VK_BACK_SPACE || e.getKeyCode() == KeyEvent.VK_DELETE) 
+                    && selectedShape != null && currentLayer != null) {
+                    deleteSelectedShape();
+                }
+                
+                // Reset zoom and pan with Ctrl+0
+                if (e.getKeyCode() == KeyEvent.VK_0 && e.isControlDown()) {
+                    resetView();
+                }
+                
+                // Zoom in with Ctrl++ (plus)
+                if (e.getKeyCode() == KeyEvent.VK_EQUALS && e.isControlDown()) {
+                    zoomIn();
+                }
+                
+                // Zoom out with Ctrl+- (minus)
+                if (e.getKeyCode() == KeyEvent.VK_MINUS && e.isControlDown()) {
+                    zoomOut();
+                }
+                
+                // Toggle space bar for temporary panning
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+                }
+            }
+            
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // Reset cursor when space bar is released
+                if (e.getKeyCode() == KeyEvent.VK_SPACE && !isPanning) {
+                    setCursor(Cursor.getDefaultCursor());
+                }
+            }
+        });
+    }
+    
+    // Convert screen X coordinate to canvas coordinate
+    private int screenToCanvasX(int screenX) {
+        return (int)((screenX - panX) / zoomFactor);
+    }
+    
+    // Convert screen Y coordinate to canvas coordinate
+    private int screenToCanvasY(int screenY) {
+        return (int)((screenY - panY) / zoomFactor);
+    }
+    
+    // Convert canvas X coordinate to screen coordinate
+    private int canvasToScreenX(int canvasX) {
+        return (int)(canvasX * zoomFactor + panX);
+    }
+    
+    // Convert canvas Y coordinate to screen coordinate
+    private int canvasToScreenY(int canvasY) {
+        return (int)(canvasY * zoomFactor + panY);
+    }
+    
+    // Reset zoom and pan to default values
+    public void resetView() {
+        zoomFactor = 1.0;
+        panX = 0;
+        panY = 0;
+        repaint();
+    }
+    
+    // Zoom in by one step
+    public void zoomIn() {
+        zoomFactor = Math.min(MAX_ZOOM, zoomFactor + ZOOM_STEP);
+        repaint();
+    }
+    
+    // Zoom out by one step
+    public void zoomOut() {
+        zoomFactor = Math.max(MIN_ZOOM, zoomFactor - ZOOM_STEP);
+        repaint();
+    }
+    
+    // Get current zoom factor
+    public double getZoomFactor() {
+        return zoomFactor;
     }
     
     public void setSelectMode(boolean selectMode) {
@@ -194,22 +356,6 @@ public class DrawingPanel extends JPanel {
             currentLayer.removeShape(selectedShape);
             saveState();
             selectedShape = null;
-            repaint();
-        }
-    }
-    
-    public void bringSelectedShapeForward() {
-        if (selectedShape != null && currentLayer != null) {
-            currentLayer.bringShapeForward(selectedShape);
-            saveState();
-            repaint();
-        }
-    }
-    
-    public void sendSelectedShapeBackward() {
-        if (selectedShape != null && currentLayer != null) {
-            currentLayer.sendShapeBackward(selectedShape);
-            saveState();
             repaint();
         }
     }
@@ -297,12 +443,56 @@ public class DrawingPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         
+        // Store original transform
+        AffineTransform originalTransform = g2d.getTransform();
+        
+        // Enable antialiasing
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        // Apply zoom and pan transformations
+        g2d.translate(panX, panY);
+        g2d.scale(zoomFactor, zoomFactor);
+        
+        // Draw checkerboard pattern for transparent background
+        drawCheckerboardBackground(g2d);
+        
+        // Draw all layers
         for (Layer layer : layers) {
             layer.draw(g2d);
         }
         
+        // Draw current drawing in progress
         if (currentDrawing != null) {
             currentDrawing.draw(g2d);
+        }
+        
+        // Restore original transform
+        g2d.setTransform(originalTransform);
+    }
+    
+    // Draw a checkerboard pattern to indicate transparent areas
+    private void drawCheckerboardBackground(Graphics2D g2d) {
+        int tileSize = 10;
+        int width = getWidth();
+        int height = getHeight();
+        
+        // Calculate visible area in canvas coordinates
+        int startX = screenToCanvasX(0);
+        int startY = screenToCanvasY(0);
+        int endX = screenToCanvasX(width);
+        int endY = screenToCanvasY(height);
+        
+        // Adjust to tile boundaries
+        startX = (startX / tileSize) * tileSize;
+        startY = (startY / tileSize) * tileSize;
+        
+        // Draw tiles
+        for (int y = startY; y <= endY; y += tileSize) {
+            for (int x = startX; x <= endX; x += tileSize) {
+                boolean isLightTile = ((x / tileSize) + (y / tileSize)) % 2 == 0;
+                g2d.setColor(isLightTile ? new Color(240, 240, 240) : new Color(220, 220, 220));
+                g2d.fillRect(x, y, tileSize, tileSize);
+            }
         }
     }
     
@@ -358,5 +548,9 @@ public class DrawingPanel extends JPanel {
     
     public Layer getCurrentLayer() {
         return currentLayer;
+    }
+    
+    public Shape getSelectedShape() {
+        return selectedShape;
     }
 } 

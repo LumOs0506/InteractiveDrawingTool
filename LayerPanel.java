@@ -13,7 +13,6 @@ public class LayerPanel extends JPanel {
     private JButton moveUpButton;
     private JButton moveDownButton;
     private JCheckBox visibilityCheckBox;
-    private JCheckBox fillCheckBox;
     private DrawingPanel drawingPanel;
     
     public LayerPanel(DrawingPanel drawingPanel) {
@@ -77,25 +76,22 @@ public class LayerPanel extends JPanel {
         layerPropertiesPanel.add(visibilityPanel, BorderLayout.NORTH);
         
         // Create button panel
-        JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 5, 5));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 5, 5));
         
         addLayerButton = new JButton("Add Layer");
         deleteLayerButton = new JButton("Delete Layer");
         moveUpButton = new JButton("Move Up");
         moveDownButton = new JButton("Move Down");
-        fillCheckBox = new JCheckBox("Fill Shapes");
         
         addLayerButton.addActionListener(e -> addLayer());
         deleteLayerButton.addActionListener(e -> deleteLayer());
         moveUpButton.addActionListener(e -> moveLayerUp());
         moveDownButton.addActionListener(e -> moveLayerDown());
-        fillCheckBox.addActionListener(e -> drawingPanel.setFilled(fillCheckBox.isSelected()));
         
         buttonPanel.add(addLayerButton);
         buttonPanel.add(deleteLayerButton);
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
-        buttonPanel.add(fillCheckBox);
         
         layerPropertiesPanel.add(buttonPanel, BorderLayout.CENTER);
         add(layerPropertiesPanel, BorderLayout.SOUTH);

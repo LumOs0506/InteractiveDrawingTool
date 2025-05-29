@@ -14,6 +14,7 @@ public class DrawingApp extends JFrame {
     private JMenuBar menuBar;
     private JToolBar toolBar;
     private JToolBar propertiesBar;
+    private JLabel statusLabel;
     private static final int TOOLBAR_ICON_SIZE = 24;
     private static final Color DARK_BG_COLOR = new Color(220, 220, 220);
     private static final Color MID_BG_COLOR = new Color(240, 240, 240);
@@ -150,6 +151,13 @@ public class DrawingApp extends JFrame {
         JMenu editMenu = createMenu("Edit", KeyEvent.VK_E);
         addMenuItem(editMenu, "Undo", KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.undo());
         addMenuItem(editMenu, "Redo", KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.redo());
+        addMenuItem(editMenu, "Delete", KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), e -> drawingPanel.deleteSelectedShape());
+        
+        // View Menu
+        JMenu viewMenu = createMenu("View", KeyEvent.VK_V);
+        addMenuItem(viewMenu, "Zoom In", KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.zoomIn());
+        addMenuItem(viewMenu, "Zoom Out", KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.zoomOut());
+        addMenuItem(viewMenu, "Reset View", KeyStroke.getKeyStroke(KeyEvent.VK_0, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.resetView());
         
         // Insert Menu
         JMenu insertMenu = createMenu("Insert", KeyEvent.VK_I);
@@ -162,6 +170,7 @@ public class DrawingApp extends JFrame {
         
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
+        menuBar.add(viewMenu);
         menuBar.add(insertMenu);
         menuBar.add(formatMenu);
         
@@ -201,14 +210,22 @@ public class DrawingApp extends JFrame {
             button.addActionListener(e -> {
                 drawingPanel.setShape(shape);
                 textField.setEnabled(shape.equals("Text"));
-                // 当选择Select工具时，将drawingPanel设置为选择模式
-                drawingPanel.setSelectMode(shape.equals("Select"));
+                
+                // When Select tool is chosen
+                if (shape.equals("Select")) {
+                    drawingPanel.setSelectMode(true);
+                    updateStatusMessage("Select Mode: Click to select shapes. Use Delete key to remove selected shapes.");
+                } else {
+                    drawingPanel.setSelectMode(false);
+                    updateStatusMessage("Ready");
+                }
             });
             
-            // 默认选中Select工具
+            // Default select Select tool
             if (shape.equals("Select")) {
                 button.setSelected(true);
                 drawingPanel.setSelectMode(true);
+                updateStatusMessage("Select Mode: Click to select shapes. Use Delete key to remove selected shapes.");
             }
             
             shapeGroup.add(button);
@@ -340,41 +357,7 @@ public class DrawingApp extends JFrame {
         
         propertiesBar.add(fillPanel);
         
-        // Add selection options panel (only visible when in Select mode)
-        JPanel selectionPanel = new JPanel();
-        selectionPanel.setBackground(MID_BG_COLOR);
-        selectionPanel.setLayout(new BoxLayout(selectionPanel, BoxLayout.Y_AXIS));
-        selectionPanel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Selection Options"),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
-        ));
-        selectionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        JButton deleteButton = new JButton("Delete Selected");
-        deleteButton.setBackground(LIGHT_BG_COLOR);
-        deleteButton.setForeground(TEXT_COLOR);
-        deleteButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-        deleteButton.addActionListener(e -> drawingPanel.deleteSelectedShape());
-        
-        JButton bringForwardButton = new JButton("Bring Forward");
-        bringForwardButton.setBackground(LIGHT_BG_COLOR);
-        bringForwardButton.setForeground(TEXT_COLOR);
-        bringForwardButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-        bringForwardButton.addActionListener(e -> drawingPanel.bringSelectedShapeForward());
-        
-        JButton sendBackwardButton = new JButton("Send Backward");
-        sendBackwardButton.setBackground(LIGHT_BG_COLOR);
-        sendBackwardButton.setForeground(TEXT_COLOR);
-        sendBackwardButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-        sendBackwardButton.addActionListener(e -> drawingPanel.sendSelectedShapeBackward());
-        
-        selectionPanel.add(deleteButton);
-        selectionPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        selectionPanel.add(bringForwardButton);
-        selectionPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        selectionPanel.add(sendBackwardButton);
-        
-        propertiesBar.add(selectionPanel);
+        // Remove the selection options panel while keeping the select tool functionality
         
         // Add filler to push everything to the top
         propertiesBar.add(Box.createVerticalGlue());
@@ -399,11 +382,61 @@ public class DrawingApp extends JFrame {
             BorderFactory.createEmptyBorder(5, 10, 5, 10)
         ));
         
-        JLabel statusLabel = new JLabel("Ready");
+        statusLabel = new JLabel("Ready");
         statusLabel.setForeground(TEXT_COLOR);
         statusBar.add(statusLabel, BorderLayout.WEST);
         
+        // Add center panel with help button
+        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.setBackground(DARK_BG_COLOR);
+        
+        JButton helpButton = new JButton("Navigation Help");
+        helpButton.setToolTipText("Show canvas navigation instructions");
+        helpButton.addActionListener(e -> showNavigationHelp());
+        centerPanel.add(helpButton);
+        
+        statusBar.add(centerPanel, BorderLayout.CENTER);
+        
+        // Add zoom controls
+        JPanel zoomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 0));
+        zoomPanel.setBackground(DARK_BG_COLOR);
+        
+        JButton zoomOutButton = new JButton("-");
+        zoomOutButton.setToolTipText("Zoom Out (Ctrl+-)");
+        zoomOutButton.addActionListener(e -> drawingPanel.zoomOut());
+        
+        JLabel zoomLabel = new JLabel("100%");
+        zoomLabel.setForeground(TEXT_COLOR);
+        
+        JButton zoomInButton = new JButton("+");
+        zoomInButton.setToolTipText("Zoom In (Ctrl++)");
+        zoomInButton.addActionListener(e -> drawingPanel.zoomIn());
+        
+        JButton zoomResetButton = new JButton("Reset View");
+        zoomResetButton.setToolTipText("Reset Zoom and Pan (Ctrl+0)");
+        zoomResetButton.addActionListener(e -> drawingPanel.resetView());
+        
+        zoomPanel.add(zoomOutButton);
+        zoomPanel.add(zoomLabel);
+        zoomPanel.add(zoomInButton);
+        zoomPanel.add(zoomResetButton);
+        
+        statusBar.add(zoomPanel, BorderLayout.EAST);
+        
+        // Update zoom percentage display
+        Timer zoomUpdateTimer = new Timer(100, e -> {
+            int zoomPercentage = (int)(drawingPanel.getZoomFactor() * 100);
+            zoomLabel.setText(zoomPercentage + "%");
+        });
+        zoomUpdateTimer.start();
+        
         return statusBar;
+    }
+    
+    private void updateStatusMessage(String message) {
+        if (statusLabel != null) {
+            statusLabel.setText(message);
+        }
     }
     
     private void openFile() {
@@ -473,6 +506,19 @@ public class DrawingApp extends JFrame {
             message,
             title,
             JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void showNavigationHelp() {
+        JOptionPane.showMessageDialog(this,
+            "Canvas Navigation Controls:\n\n" +
+            "• Zoom In: Ctrl + Mouse Wheel Up or Ctrl + '+'\n" +
+            "• Zoom Out: Ctrl + Mouse Wheel Down or Ctrl + '-'\n" +
+            "• Reset View: Ctrl + 0\n" +
+            "• Pan Canvas: Middle Mouse Button Drag or Ctrl + Shift + Drag\n" +
+            "• Temporary Pan Mode: Hold Space Bar\n\n" +
+            "When zoomed in, you can navigate around the canvas to work on details.",
+            "Canvas Navigation Help",
+            JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static void main(String[] args) {
