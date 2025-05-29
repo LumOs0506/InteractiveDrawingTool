@@ -193,7 +193,7 @@ public class DrawingApp extends JFrame {
         toolBar.setBackground(DARK_BG_COLOR);
         
         // Shape buttons with modern styling
-        String[] shapes = {"Line", "Rectangle", "Circle", "Text", "Free"};
+        String[] shapes = {"Select", "Line", "Rectangle", "Circle", "Text", "Free"};
         ButtonGroup shapeGroup = new ButtonGroup();
         
         for (String shape : shapes) {
@@ -201,7 +201,16 @@ public class DrawingApp extends JFrame {
             button.addActionListener(e -> {
                 drawingPanel.setShape(shape);
                 textField.setEnabled(shape.equals("Text"));
+                // 当选择Select工具时，将drawingPanel设置为选择模式
+                drawingPanel.setSelectMode(shape.equals("Select"));
             });
+            
+            // 默认选中Select工具
+            if (shape.equals("Select")) {
+                button.setSelected(true);
+                drawingPanel.setSelectMode(true);
+            }
+            
             shapeGroup.add(button);
             toolBar.add(button);
             toolBar.addSeparator(new Dimension(0, 5));
@@ -330,6 +339,42 @@ public class DrawingApp extends JFrame {
         fillPanel.add(fillCheckBox);
         
         propertiesBar.add(fillPanel);
+        
+        // Add selection options panel (only visible when in Select mode)
+        JPanel selectionPanel = new JPanel();
+        selectionPanel.setBackground(MID_BG_COLOR);
+        selectionPanel.setLayout(new BoxLayout(selectionPanel, BoxLayout.Y_AXIS));
+        selectionPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Selection Options"),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        selectionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        JButton deleteButton = new JButton("Delete Selected");
+        deleteButton.setBackground(LIGHT_BG_COLOR);
+        deleteButton.setForeground(TEXT_COLOR);
+        deleteButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        deleteButton.addActionListener(e -> drawingPanel.deleteSelectedShape());
+        
+        JButton bringForwardButton = new JButton("Bring Forward");
+        bringForwardButton.setBackground(LIGHT_BG_COLOR);
+        bringForwardButton.setForeground(TEXT_COLOR);
+        bringForwardButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        bringForwardButton.addActionListener(e -> drawingPanel.bringSelectedShapeForward());
+        
+        JButton sendBackwardButton = new JButton("Send Backward");
+        sendBackwardButton.setBackground(LIGHT_BG_COLOR);
+        sendBackwardButton.setForeground(TEXT_COLOR);
+        sendBackwardButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        sendBackwardButton.addActionListener(e -> drawingPanel.sendSelectedShapeBackward());
+        
+        selectionPanel.add(deleteButton);
+        selectionPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        selectionPanel.add(bringForwardButton);
+        selectionPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        selectionPanel.add(sendBackwardButton);
+        
+        propertiesBar.add(selectionPanel);
         
         // Add filler to push everything to the top
         propertiesBar.add(Box.createVerticalGlue());

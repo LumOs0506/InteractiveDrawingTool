@@ -24,6 +24,7 @@ public class DrawingPanel extends JPanel {
     private boolean isMoving;
     private int lastX, lastY;
     private float currentStrokeWidth = 1.0f;
+    private boolean selectMode = false;
     
     public DrawingPanel() {
         layers = new ArrayList<>();
@@ -51,43 +52,44 @@ public class DrawingPanel extends JPanel {
                 lastX = startX;
                 lastY = startY;
                 
-                // Check if clicking on an existing shape in any layer
-                for (int i = layers.size() - 1; i >= 0; i--) {
-                    Layer layer = layers.get(i);
-                    if (layer.isVisible()) {
-                        Shape shape = layer.getShapeAt(startX, startY);
-                        if (shape != null) {
-                            // Deselect previously selected shape
-                            if (selectedShape != null) {
-                                selectedShape.setSelected(false);
+                if (selectMode || e.isControlDown()) {
+                    for (int i = layers.size() - 1; i >= 0; i--) {
+                        Layer layer = layers.get(i);
+                        if (layer.isVisible()) {
+                            Shape shape = layer.getShapeAt(startX, startY);
+                            if (shape != null) {
+                                if (selectedShape != null) {
+                                    selectedShape.setSelected(false);
+                                }
+                                
+                                selectedShape = shape;
+                                selectedShape.setSelected(true);
+                                currentLayer = layer;
+                                
+                                if (shape.isResizeHandle(startX, startY)) {
+                                    isResizing = true;
+                                } else {
+                                    isMoving = true;
+                                }
+                                
+                                repaint();
+                                return;
                             }
-                            
-                            selectedShape = shape;
-                            selectedShape.setSelected(true);
-                            currentLayer = layer;
-                            
-                            // Check if clicking on resize handle
-                            if (shape.isResizeHandle(startX, startY)) {
-                                isResizing = true;
-                            } else {
-                                isMoving = true;
-                            }
-                            
-                            repaint();
-                            return;
                         }
+                    }
+                    
+                    if (selectedShape != null) {
+                        selectedShape.setSelected(false);
+                        selectedShape = null;
+                        repaint();
+                    }
+                    
+                    if (selectMode) {
+                        return;
                     }
                 }
                 
-                // If not clicking on a shape, deselect current shape
-                if (selectedShape != null) {
-                    selectedShape.setSelected(false);
-                    selectedShape = null;
-                    repaint();
-                }
-                
-                // Start drawing new shape in current layer
-                if (currentLayer != null) {
+                if (currentLayer != null && !selectMode) {
                     switch (currentShape) {
                         case "Circle":
                             currentDrawing = new Circle(currentColor, startX, startY, startX, startY, filled);
@@ -108,7 +110,6 @@ public class DrawingPanel extends JPanel {
                                 currentDrawing = null;
                                 repaint();
                             } else {
-                                // If no text is entered, show a dialog to input text
                                 String text = JOptionPane.showInputDialog(this, "Enter text:");
                                 if (text != null && !text.isEmpty()) {
                                     currentText = text;
@@ -129,7 +130,6 @@ public class DrawingPanel extends JPanel {
                             currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
                     
-                    // 设置线条粗细
                     if (currentDrawing != null) {
                         currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
@@ -174,13 +174,44 @@ public class DrawingPanel extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if ((e.getKeyCode() == KeyEvent.VK_BACK_SPACE || e.getKeyCode() == KeyEvent.VK_DELETE) && selectedShape != null && currentLayer != null) {
-                    currentLayer.removeShape(selectedShape);
-                    saveState();
-                    selectedShape = null;
-                    repaint();
+                    deleteSelectedShape();
                 }
             }
         });
+    }
+    
+    public void setSelectMode(boolean selectMode) {
+        this.selectMode = selectMode;
+        if (!selectMode && selectedShape != null) {
+            selectedShape.setSelected(false);
+            selectedShape = null;
+            repaint();
+        }
+    }
+    
+    public void deleteSelectedShape() {
+        if (selectedShape != null && currentLayer != null) {
+            currentLayer.removeShape(selectedShape);
+            saveState();
+            selectedShape = null;
+            repaint();
+        }
+    }
+    
+    public void bringSelectedShapeForward() {
+        if (selectedShape != null && currentLayer != null) {
+            currentLayer.bringShapeForward(selectedShape);
+            saveState();
+            repaint();
+        }
+    }
+    
+    public void sendSelectedShapeBackward() {
+        if (selectedShape != null && currentLayer != null) {
+            currentLayer.sendShapeBackward(selectedShape);
+            saveState();
+            repaint();
+        }
     }
     
     public void setLayers(ArrayList<Layer> layers) {
@@ -236,7 +267,6 @@ public class DrawingPanel extends JPanel {
             selectedShape = null;
         }
         
-        // Create new initial layer
         Layer initialLayer = new Layer("Layer 1");
         layers.add(initialLayer);
         currentLayer = initialLayer;
@@ -267,12 +297,10 @@ public class DrawingPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         
-        // Draw all visible layers
         for (Layer layer : layers) {
             layer.draw(g2d);
         }
         
-        // Draw current shape being drawn
         if (currentDrawing != null) {
             currentDrawing.draw(g2d);
         }
@@ -316,7 +344,6 @@ public class DrawingPanel extends JPanel {
         return currentColor;
     }
     
-    // 添加设置线条粗细的方法
     public void setStrokeWidth(float width) {
         this.currentStrokeWidth = width;
         if (selectedShape != null) {
@@ -325,8 +352,11 @@ public class DrawingPanel extends JPanel {
         }
     }
     
-    // 添加获取当前线条粗细的方法
     public float getStrokeWidth() {
         return currentStrokeWidth;
+    }
+    
+    public Layer getCurrentLayer() {
+        return currentLayer;
     }
 } 
