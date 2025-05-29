@@ -8,6 +8,10 @@ import javax.swing.border.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Main application class that creates the drawing tool interface
+ * This class sets up the window, menus, and all UI components
+ */
 public class DrawingApp extends JFrame {
     private DrawingPanel drawingPanel;
     private JTextField textField;
@@ -15,6 +19,7 @@ public class DrawingApp extends JFrame {
     private JToolBar toolBar;
     private JToolBar propertiesBar;
     private JLabel statusLabel;
+    // Constants for UI sizes and colors
     private static final int TOOLBAR_ICON_SIZE = 24;
     private static final Color DARK_BG_COLOR = new Color(220, 220, 220);
     private static final Color MID_BG_COLOR = new Color(240, 240, 240);
@@ -22,15 +27,18 @@ public class DrawingApp extends JFrame {
     private static final Color TEXT_COLOR = new Color(40, 40, 40);
     private static final Color ACCENT_COLOR = new Color(64, 136, 230);
     
+    /**
+     * Constructor - creates the application window and all UI components
+     */
     public DrawingApp() {
         setTitle("Interactive Drawing Tool");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
         
-        // Set modern look and feel
+        // Set modern look and feel for the application
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            // Set color theme
+            // Set color theme for a consistent look
             UIManager.put("Panel.background", DARK_BG_COLOR);
             UIManager.put("ToolBar.background", DARK_BG_COLOR);
             UIManager.put("ToolBar.foreground", TEXT_COLOR);
@@ -56,12 +64,12 @@ public class DrawingApp extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(DARK_BG_COLOR);
         
-        // Create the drawing panel
+        // Create the drawing panel - this is where users will draw
         drawingPanel = new DrawingPanel();
         drawingPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         drawingPanel.setBackground(Color.WHITE);
         
-        // Create the layer panel
+        // Create the layer panel - shows all layers in the drawing
         LayerPanel layerPanel = new LayerPanel(drawingPanel);
         layerPanel.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createMatteBorder(1, 1, 0, 0, Color.GRAY),
@@ -69,10 +77,10 @@ public class DrawingApp extends JFrame {
         ));
         layerPanel.setBackground(MID_BG_COLOR);
         
-        // Create the vertical toolbar (left side)
+        // Create the vertical toolbar (left side) with drawing tools
         createToolBar();
         
-        // Create the properties panel (right side)
+        // Create the properties panel (right side) with settings
         createPropertiesPanel();
         
         // Create center panel for drawing area
@@ -109,26 +117,30 @@ public class DrawingApp extends JFrame {
         
         mainPanel.add(contentSplitPane, BorderLayout.CENTER);
         
-        // Create the menu bar
+        // Create the menu bar at the top of the window
         createMenuBar();
         
-        // Add status bar at the bottom
+        // Add status bar at the bottom of the window
         JPanel statusBar = createStatusBar();
         mainPanel.add(statusBar, BorderLayout.SOUTH);
         
         // Add the main panel to the frame
         add(mainPanel);
         
+        // Center the window on screen
         setLocationRelativeTo(null);
     }
     
+    /**
+     * Creates the menu bar with File, Edit, View, Insert and Format menus
+     */
     private void createMenuBar() {
         menuBar = new JMenuBar();
         menuBar.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         menuBar.setBackground(DARK_BG_COLOR);
         menuBar.setForeground(TEXT_COLOR);
         
-        // File Menu
+        // File Menu - for file operations like New, Open, Save, Exit
         JMenu fileMenu = createMenu("File", KeyEvent.VK_F);
         addMenuItem(fileMenu, "New", KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> {
             int response = JOptionPane.showConfirmDialog(this,
@@ -147,23 +159,23 @@ public class DrawingApp extends JFrame {
         fileMenu.addSeparator();
         addMenuItem(fileMenu, "Exit", KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> System.exit(0));
         
-        // Edit Menu
+        // Edit Menu - for editing operations like Undo, Redo, Delete
         JMenu editMenu = createMenu("Edit", KeyEvent.VK_E);
         addMenuItem(editMenu, "Undo", KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.undo());
         addMenuItem(editMenu, "Redo", KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.redo());
         addMenuItem(editMenu, "Delete", KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), e -> drawingPanel.deleteSelectedShape());
         
-        // View Menu
+        // View Menu - for view operations like Zoom In, Zoom Out, Reset View
         JMenu viewMenu = createMenu("View", KeyEvent.VK_V);
         addMenuItem(viewMenu, "Zoom In", KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.zoomIn());
         addMenuItem(viewMenu, "Zoom Out", KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.zoomOut());
         addMenuItem(viewMenu, "Reset View", KeyStroke.getKeyStroke(KeyEvent.VK_0, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> drawingPanel.resetView());
         
-        // Insert Menu
+        // Insert Menu - for inserting images
         JMenu insertMenu = createMenu("Insert", KeyEvent.VK_I);
         addMenuItem(insertMenu, "Image", KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> insertImage());
         
-        // Format Menu
+        // Format Menu - for formatting options like Color and Font
         JMenu formatMenu = createMenu("Format", KeyEvent.VK_O);
         addMenuItem(formatMenu, "Color...", KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> chooseColor());
         addMenuItem(formatMenu, "Font...", KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()), e -> chooseFont());
@@ -177,6 +189,9 @@ public class DrawingApp extends JFrame {
         setJMenuBar(menuBar);
     }
     
+    /**
+     * Helper method to create a menu with title and mnemonic key
+     */
     private JMenu createMenu(String title, int mnemonic) {
         JMenu menu = new JMenu(title);
         menu.setMnemonic(mnemonic);
@@ -184,6 +199,9 @@ public class DrawingApp extends JFrame {
         return menu;
     }
     
+    /**
+     * Helper method to add a menu item with title, keyboard shortcut and action
+     */
     private void addMenuItem(JMenu menu, String title, KeyStroke accelerator, ActionListener action) {
         JMenuItem item = new JMenuItem(title);
         item.setForeground(TEXT_COLOR);
@@ -195,6 +213,9 @@ public class DrawingApp extends JFrame {
         menu.add(item);
     }
     
+    /**
+     * Creates the toolbar with drawing tools like Select, Line, Rectangle, etc.
+     */
     private void createToolBar() {
         toolBar = new JToolBar(JToolBar.VERTICAL);
         toolBar.setFloatable(false);
@@ -234,6 +255,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Creates the properties panel with controls for stroke width, color, text, etc.
+     */
     private void createPropertiesPanel() {
         propertiesBar = new JToolBar();
         propertiesBar.setFloatable(false);
@@ -248,7 +272,7 @@ public class DrawingApp extends JFrame {
         propertiesTitle.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         propertiesBar.add(propertiesTitle);
         
-        // Add stroke width control
+        // Add stroke width control - slider to adjust line thickness
         JPanel strokePanel = new JPanel();
         strokePanel.setBackground(MID_BG_COLOR);
         strokePanel.setLayout(new BoxLayout(strokePanel, BoxLayout.Y_AXIS));
@@ -280,7 +304,7 @@ public class DrawingApp extends JFrame {
         
         propertiesBar.add(strokePanel);
         
-        // Add color selector
+        // Add color selector - button to choose drawing color
         JPanel colorPanel = new JPanel();
         colorPanel.setBackground(MID_BG_COLOR);
         colorPanel.setLayout(new BoxLayout(colorPanel, BoxLayout.Y_AXIS));
@@ -302,7 +326,7 @@ public class DrawingApp extends JFrame {
         
         propertiesBar.add(colorPanel);
         
-        // Add text field for text input
+        // Add text field for text input - used when adding text to drawing
         JPanel textPanel = new JPanel();
         textPanel.setBackground(MID_BG_COLOR);
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
@@ -341,7 +365,7 @@ public class DrawingApp extends JFrame {
         
         propertiesBar.add(textPanel);
         
-        // Add fill option
+        // Add fill option - checkbox to toggle filled shapes
         JPanel fillPanel = new JPanel();
         fillPanel.setBackground(MID_BG_COLOR);
         fillPanel.setLayout(new BoxLayout(fillPanel, BoxLayout.Y_AXIS));
@@ -357,12 +381,13 @@ public class DrawingApp extends JFrame {
         
         propertiesBar.add(fillPanel);
         
-        // Remove the selection options panel while keeping the select tool functionality
-        
         // Add filler to push everything to the top
         propertiesBar.add(Box.createVerticalGlue());
     }
     
+    /**
+     * Helper method to create styled toggle buttons for the toolbar
+     */
     private JToggleButton createStyledToggleButton(String text) {
         JToggleButton button = new JToggleButton(text);
         button.setFocusPainted(false);
@@ -374,6 +399,10 @@ public class DrawingApp extends JFrame {
         return button;
     }
     
+    /**
+     * Creates the status bar at the bottom of the window
+     * Contains status messages, help button and zoom controls
+     */
     private JPanel createStatusBar() {
         JPanel statusBar = new JPanel(new BorderLayout());
         statusBar.setBackground(DARK_BG_COLOR);
@@ -382,6 +411,7 @@ public class DrawingApp extends JFrame {
             BorderFactory.createEmptyBorder(5, 10, 5, 10)
         ));
         
+        // Status message on the left side
         statusLabel = new JLabel("Ready");
         statusLabel.setForeground(TEXT_COLOR);
         statusBar.add(statusLabel, BorderLayout.WEST);
@@ -397,7 +427,7 @@ public class DrawingApp extends JFrame {
         
         statusBar.add(centerPanel, BorderLayout.CENTER);
         
-        // Add zoom controls
+        // Add zoom controls on the right side
         JPanel zoomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 0));
         zoomPanel.setBackground(DARK_BG_COLOR);
         
@@ -423,7 +453,7 @@ public class DrawingApp extends JFrame {
         
         statusBar.add(zoomPanel, BorderLayout.EAST);
         
-        // Update zoom percentage display
+        // Update zoom percentage display every 100ms
         Timer zoomUpdateTimer = new Timer(100, e -> {
             int zoomPercentage = (int)(drawingPanel.getZoomFactor() * 100);
             zoomLabel.setText(zoomPercentage + "%");
@@ -433,12 +463,18 @@ public class DrawingApp extends JFrame {
         return statusBar;
     }
     
+    /**
+     * Updates the status message shown at the bottom of the window
+     */
     private void updateStatusMessage(String message) {
         if (statusLabel != null) {
             statusLabel.setText(message);
         }
     }
     
+    /**
+     * Opens a PNG image file and displays it in the drawing panel
+     */
     private void openFile() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
@@ -456,6 +492,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Saves the current drawing as a PNG image file
+     */
     private void saveFile() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
@@ -470,6 +509,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Inserts an image into the drawing
+     */
     private void insertImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
@@ -486,6 +528,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Opens a color chooser dialog to select a new drawing color
+     */
     private void chooseColor() {
         Color newColor = JColorChooser.showDialog(this, "Choose Color", drawingPanel.getCurrentColor());
         if (newColor != null) {
@@ -493,6 +538,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Opens a font chooser dialog to select a new text font
+     */
     private void chooseFont() {
         Font currentFont = drawingPanel.getCurrentFont();
         Font newFont = JFontChooser.showDialog(this, "Choose Font", currentFont);
@@ -501,6 +549,9 @@ public class DrawingApp extends JFrame {
         }
     }
     
+    /**
+     * Shows an error message dialog
+     */
     private void showError(String title, String message) {
         JOptionPane.showMessageDialog(this, 
             message,
@@ -508,6 +559,9 @@ public class DrawingApp extends JFrame {
             JOptionPane.ERROR_MESSAGE);
     }
     
+    /**
+     * Shows a help dialog with canvas navigation instructions
+     */
     private void showNavigationHelp() {
         JOptionPane.showMessageDialog(this,
             "Canvas Navigation Controls:\n\n" +
@@ -521,13 +575,17 @@ public class DrawingApp extends JFrame {
             JOptionPane.INFORMATION_MESSAGE);
     }
     
+    /**
+     * Main method - entry point of the application
+     * Shows a splash screen and then launches the main window
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // 显示启动画面
+            // Show splash screen first
             SplashScreen splash = new SplashScreen();
             splash.showSplash(null);
             
-            // 主应用程序将由启动画面在淡出后启动
+            // Main application will be launched after splash screen fades out
         });
     }
 }

@@ -7,11 +7,20 @@ import java.io.*;
 import java.util.*;
 import javax.imageio.ImageIO;
 
+/**
+ * The DrawingPanel class is the main canvas where all drawing happens.
+ * It handles mouse interactions, drawing shapes, and managing layers.
+ */
 public class DrawingPanel extends JPanel {
+    // Lists to store layers and shapes
     private ArrayList<Layer> layers;
     private Layer currentLayer;
+    
+    // For undo and redo functionality
     private Stack<ArrayList<Layer>> undoStack;
     private Stack<ArrayList<Layer>> redoStack;
+    
+    // Drawing properties
     private Color currentColor;
     private String currentShape;
     private Shape currentDrawing;
@@ -20,11 +29,13 @@ public class DrawingPanel extends JPanel {
     private BufferedImage currentImage;
     private String currentText;
     private Font currentFont;
+    private float currentStrokeWidth = 1.0f;
+    
+    // Selection properties
     private Shape selectedShape;
     private boolean isResizing;
     private boolean isMoving;
     private int lastX, lastY;
-    private float currentStrokeWidth = 1.0f;
     private boolean selectMode = false;
     
     // Canvas navigation properties
@@ -37,6 +48,9 @@ public class DrawingPanel extends JPanel {
     private static final double MAX_ZOOM = 5.0;
     private static final double ZOOM_STEP = 0.1;
     
+    /**
+     * Constructor - initializes the drawing panel and sets up event listeners
+     */
     public DrawingPanel() {
         layers = new ArrayList<>();
         undoStack = new Stack<>();
@@ -79,20 +93,25 @@ public class DrawingPanel extends JPanel {
                     return;
                 }
                 
+                // Handle selection mode - check if we clicked on a shape
                 if (selectMode || e.isControlDown()) {
+                    // Look through all layers from top to bottom
                     for (int i = layers.size() - 1; i >= 0; i--) {
                         Layer layer = layers.get(i);
                         if (layer.isVisible()) {
                             Shape shape = layer.getShapeAt(canvasX, canvasY);
                             if (shape != null) {
+                                // Deselect previous shape if any
                                 if (selectedShape != null) {
                                     selectedShape.setSelected(false);
                                 }
                                 
+                                // Select the new shape
                                 selectedShape = shape;
                                 selectedShape.setSelected(true);
                                 currentLayer = layer;
                                 
+                                // Check if we're clicking on a resize handle
                                 if (shape.isResizeHandle(canvasX, canvasY)) {
                                     isResizing = true;
                                 } else {
@@ -105,17 +124,20 @@ public class DrawingPanel extends JPanel {
                         }
                     }
                     
+                    // If we clicked on empty space, deselect any selected shape
                     if (selectedShape != null) {
                         selectedShape.setSelected(false);
                         selectedShape = null;
                         repaint();
                     }
                     
+                    // If in select mode, don't start drawing
                     if (selectMode) {
                         return;
                     }
                 }
                 
+                // Create a new shape based on the selected tool
                 if (currentLayer != null && !selectMode) {
                     switch (currentShape) {
                         case "Circle":
@@ -137,6 +159,7 @@ public class DrawingPanel extends JPanel {
                                 currentDrawing = null;
                                 repaint();
                             } else {
+                                // If no text is set, prompt the user
                                 String text = JOptionPane.showInputDialog(this, "Enter text:");
                                 if (text != null && !text.isEmpty()) {
                                     currentText = text;
@@ -149,14 +172,17 @@ public class DrawingPanel extends JPanel {
                             }
                             break;
                         case "Free":
+                            // Free drawing tool for smooth curves
                             currentDrawing = new FreeDrawing(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             currentDrawing.setStrokeWidth(currentStrokeWidth);
                             break;
                         default:
+                            // Default to Line tool
                             currentDrawing = new Line(currentColor, canvasX, canvasY, canvasX, canvasY, filled);
                             currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
                     
+                    // Set stroke width for the new shape
                     if (currentDrawing != null) {
                         currentDrawing.setStrokeWidth(currentStrokeWidth);
                     }
@@ -164,12 +190,14 @@ public class DrawingPanel extends JPanel {
             }
             
             public void mouseReleased(MouseEvent e) {
+                // End panning mode if active
                 if (isPanning) {
                     isPanning = false;
                     setCursor(Cursor.getDefaultCursor());
                     return;
                 }
                 
+                // Finalize the current drawing and add it to the layer
                 if (currentDrawing != null && !currentShape.equals("Text") && currentLayer != null) {
                     currentLayer.addShape(currentDrawing);
                     saveState();
@@ -186,7 +214,7 @@ public class DrawingPanel extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 requestFocusInWindow();
                 
-                // Handle panning
+                // Handle panning - move the view around
                 if (isPanning) {
                     int dx = e.getX() - panStartX;
                     int dy = e.getY() - panStartY;
@@ -202,6 +230,7 @@ public class DrawingPanel extends JPanel {
                 int canvasX = screenToCanvasX(e.getX());
                 int canvasY = screenToCanvasY(e.getY());
                 
+                // Handle resizing or moving selected shapes
                 if (selectedShape != null) {
                     if (isResizing) {
                         selectedShape.setEndPoint(canvasX, canvasY);
@@ -212,6 +241,7 @@ public class DrawingPanel extends JPanel {
                     lastY = canvasY;
                     repaint();
                 } else if (currentDrawing != null && !currentShape.equals("Text")) {
+                    // Update the end point of the current drawing
                     currentDrawing.setEndPoint(canvasX, canvasY);
                     repaint();
                 }
@@ -260,7 +290,7 @@ public class DrawingPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                // Delete selected shape
+                // Delete selected shape with Delete or Backspace key
                 if ((e.getKeyCode() == KeyEvent.VK_BACK_SPACE || e.getKeyCode() == KeyEvent.VK_DELETE) 
                     && selectedShape != null && currentLayer != null) {
                     deleteSelectedShape();
@@ -297,27 +327,39 @@ public class DrawingPanel extends JPanel {
         });
     }
     
-    // Convert screen X coordinate to canvas coordinate
+    /**
+     * Convert screen X coordinate to canvas coordinate
+     * This is needed because of zooming and panning
+     */
     private int screenToCanvasX(int screenX) {
         return (int)((screenX - panX) / zoomFactor);
     }
     
-    // Convert screen Y coordinate to canvas coordinate
+    /**
+     * Convert screen Y coordinate to canvas coordinate
+     * This is needed because of zooming and panning
+     */
     private int screenToCanvasY(int screenY) {
         return (int)((screenY - panY) / zoomFactor);
     }
     
-    // Convert canvas X coordinate to screen coordinate
+    /**
+     * Convert canvas X coordinate to screen coordinate
+     */
     private int canvasToScreenX(int canvasX) {
         return (int)(canvasX * zoomFactor + panX);
     }
     
-    // Convert canvas Y coordinate to screen coordinate
+    /**
+     * Convert canvas Y coordinate to screen coordinate
+     */
     private int canvasToScreenY(int canvasY) {
         return (int)(canvasY * zoomFactor + panY);
     }
     
-    // Reset zoom and pan to default values
+    /**
+     * Reset zoom and pan to default values (100% zoom, no pan)
+     */
     public void resetView() {
         zoomFactor = 1.0;
         panX = 0;
@@ -325,23 +367,32 @@ public class DrawingPanel extends JPanel {
         repaint();
     }
     
-    // Zoom in by one step
+    /**
+     * Zoom in by one step
+     */
     public void zoomIn() {
         zoomFactor = Math.min(MAX_ZOOM, zoomFactor + ZOOM_STEP);
         repaint();
     }
     
-    // Zoom out by one step
+    /**
+     * Zoom out by one step
+     */
     public void zoomOut() {
         zoomFactor = Math.max(MIN_ZOOM, zoomFactor - ZOOM_STEP);
         repaint();
     }
     
-    // Get current zoom factor
+    /**
+     * Get current zoom factor (1.0 = 100%)
+     */
     public double getZoomFactor() {
         return zoomFactor;
     }
     
+    /**
+     * Toggle selection mode on or off
+     */
     public void setSelectMode(boolean selectMode) {
         this.selectMode = selectMode;
         if (!selectMode && selectedShape != null) {
@@ -351,6 +402,9 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Delete the currently selected shape
+     */
     public void deleteSelectedShape() {
         if (selectedShape != null && currentLayer != null) {
             currentLayer.removeShape(selectedShape);
@@ -360,6 +414,9 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Set the layers for this drawing panel
+     */
     public void setLayers(ArrayList<Layer> layers) {
         this.layers = layers;
         if (!layers.isEmpty() && currentLayer == null) {
@@ -367,10 +424,17 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Set the current active layer
+     */
     public void setCurrentLayer(Layer layer) {
         this.currentLayer = layer;
     }
     
+    /**
+     * Save the current state for undo/redo functionality
+     * Creates a deep copy of all layers and shapes
+     */
     private void saveState() {
         ArrayList<Layer> state = new ArrayList<>();
         for (Layer layer : layers) {
@@ -385,6 +449,9 @@ public class DrawingPanel extends JPanel {
         redoStack.clear();
     }
     
+    /**
+     * Undo the last action
+     */
     public void undo() {
         if (!undoStack.isEmpty()) {
             ArrayList<Layer> currentState = new ArrayList<>(layers);
@@ -394,6 +461,9 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Redo the last undone action
+     */
     public void redo() {
         if (!redoStack.isEmpty()) {
             ArrayList<Layer> currentState = new ArrayList<>(layers);
@@ -403,6 +473,10 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Reset the drawing panel to its initial state
+     * Clears all layers and creates a new initial layer
+     */
     public void reset() {
         layers.clear();
         undoStack.clear();
@@ -420,6 +494,9 @@ public class DrawingPanel extends JPanel {
         repaint();
     }
     
+    /**
+     * Save the current drawing to a PNG file
+     */
     public void saveDrawing(File file) {
         try {
             BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -434,10 +511,17 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Check if shapes should be filled
+     */
     public boolean isFilled() {
         return filled;
     }
 
+    /**
+     * Paint the drawing panel with all layers and shapes
+     * This method is called automatically by Swing
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -446,7 +530,7 @@ public class DrawingPanel extends JPanel {
         // Store original transform
         AffineTransform originalTransform = g2d.getTransform();
         
-        // Enable antialiasing
+        // Enable antialiasing for smoother drawing
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Apply zoom and pan transformations
@@ -470,7 +554,10 @@ public class DrawingPanel extends JPanel {
         g2d.setTransform(originalTransform);
     }
     
-    // Draw a checkerboard pattern to indicate transparent areas
+    /**
+     * Draw a checkerboard pattern to indicate transparent areas
+     * This is similar to how Photoshop shows transparency
+     */
     private void drawCheckerboardBackground(Graphics2D g2d) {
         int tileSize = 10;
         int width = getWidth();
@@ -486,7 +573,7 @@ public class DrawingPanel extends JPanel {
         startX = (startX / tileSize) * tileSize;
         startY = (startY / tileSize) * tileSize;
         
-        // Draw tiles
+        // Draw tiles in a checkerboard pattern
         for (int y = startY; y <= endY; y += tileSize) {
             for (int x = startX; x <= endX; x += tileSize) {
                 boolean isLightTile = ((x / tileSize) + (y / tileSize)) % 2 == 0;
@@ -496,18 +583,30 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Set the current drawing color
+     */
     public void setColor(Color color) {
         currentColor = color;
     }
     
+    /**
+     * Set the current shape tool (Line, Rectangle, Circle, etc.)
+     */
     public void setShape(String shape) {
         currentShape = shape;
     }
     
+    /**
+     * Set whether shapes should be filled or not
+     */
     public void setFilled(boolean filled) {
         this.filled = filled;
     }
     
+    /**
+     * Set the current image for image insertion
+     */
     public void setCurrentImage(BufferedImage image) {
         this.currentImage = image;
         if (image != null) {
@@ -515,6 +614,9 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Set the current text for text insertion
+     */
     public void setCurrentText(String text) {
         this.currentText = text;
         if (!text.isEmpty()) {
@@ -522,18 +624,30 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Set the current font for text
+     */
     public void setCurrentFont(Font font) {
         this.currentFont = font;
     }
     
+    /**
+     * Get the current font
+     */
     public Font getCurrentFont() {
         return currentFont;
     }
     
+    /**
+     * Get the current color
+     */
     public Color getCurrentColor() {
         return currentColor;
     }
     
+    /**
+     * Set the stroke width (line thickness)
+     */
     public void setStrokeWidth(float width) {
         this.currentStrokeWidth = width;
         if (selectedShape != null) {
@@ -542,14 +656,23 @@ public class DrawingPanel extends JPanel {
         }
     }
     
+    /**
+     * Get the current stroke width
+     */
     public float getStrokeWidth() {
         return currentStrokeWidth;
     }
     
+    /**
+     * Get the current active layer
+     */
     public Layer getCurrentLayer() {
         return currentLayer;
     }
     
+    /**
+     * Get the currently selected shape
+     */
     public Shape getSelectedShape() {
         return selectedShape;
     }

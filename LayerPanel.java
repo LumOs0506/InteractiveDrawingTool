@@ -4,17 +4,27 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * LayerPanel class creates the UI panel for managing layers
+ * This panel shows the list of layers and provides controls to add, delete, and reorder layers
+ * Similar to the layers panel in Photoshop or other graphics programs
+ */
 public class LayerPanel extends JPanel {
-    private ArrayList<Layer> layers;
-    private JList<Layer> layerList;
-    private DefaultListModel<Layer> listModel;
-    private JButton addLayerButton;
-    private JButton deleteLayerButton;
-    private JButton moveUpButton;
-    private JButton moveDownButton;
-    private JCheckBox visibilityCheckBox;
-    private DrawingPanel drawingPanel;
+    private ArrayList<Layer> layers;           // List of all layers in the drawing
+    private JList<Layer> layerList;            // UI component showing the layers
+    private DefaultListModel<Layer> listModel; // Data model for the layer list
+    private JButton addLayerButton;            // Button to add a new layer
+    private JButton deleteLayerButton;         // Button to delete the selected layer
+    private JButton moveUpButton;              // Button to move layer up in the stack
+    private JButton moveDownButton;            // Button to move layer down in the stack
+    private JCheckBox visibilityCheckBox;      // Checkbox to toggle layer visibility
+    private DrawingPanel drawingPanel;         // Reference to the main drawing panel
     
+    /**
+     * Constructor - creates the layer panel with all its controls
+     * 
+     * @param drawingPanel Reference to the main drawing panel
+     */
     public LayerPanel(DrawingPanel drawingPanel) {
         this.drawingPanel = drawingPanel;
         this.layers = new ArrayList<>();
@@ -23,7 +33,7 @@ public class LayerPanel extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(200, 0));
         
-        // Create layer list
+        // Create layer list with custom cell renderer
         layerList = new JList<>(listModel);
         layerList.setCellRenderer(new LayerListCellRenderer());
         layerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -33,17 +43,18 @@ public class LayerPanel extends JPanel {
                 if (selectedLayer != null) {
                     drawingPanel.setCurrentLayer(selectedLayer);
                     
-                    // 更新可见性复选框状态
+                    // Update visibility checkbox state
                     visibilityCheckBox.setSelected(selectedLayer.isVisible());
                 }
             }
         });
         
+        // Add mouse listener to handle clicks on visibility icons
         layerList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // 处理层列表中的点击，检查是否点击在可见性图标上
-                if (e.getX() < 20) { // 假设可见性图标在左边20像素内
+                // Handle clicks in the layer list, check if clicking on visibility icon
+                if (e.getX() < 20) { // Assume visibility icon is within 20 pixels from left
                     int index = layerList.locationToIndex(e.getPoint());
                     if (index >= 0) {
                         Layer layer = listModel.getElementAt(index);
@@ -55,13 +66,14 @@ public class LayerPanel extends JPanel {
             }
         });
         
+        // Add scrollbar to layer list
         JScrollPane scrollPane = new JScrollPane(layerList);
         add(scrollPane, BorderLayout.CENTER);
         
-        // 创建图层属性面板
+        // Create layer properties panel
         JPanel layerPropertiesPanel = new JPanel(new BorderLayout());
         
-        // 创建可见性切换
+        // Create visibility toggle checkbox
         JPanel visibilityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         visibilityCheckBox = new JCheckBox("Visible");
         visibilityCheckBox.addActionListener(e -> {
@@ -75,7 +87,7 @@ public class LayerPanel extends JPanel {
         visibilityPanel.add(visibilityCheckBox);
         layerPropertiesPanel.add(visibilityPanel, BorderLayout.NORTH);
         
-        // Create button panel
+        // Create button panel with layer operations
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 5, 5));
         
         addLayerButton = new JButton("Add Layer");
@@ -107,21 +119,30 @@ public class LayerPanel extends JPanel {
         drawingPanel.setCurrentLayer(initialLayer);
     }
     
+    /**
+     * Adds a new layer to the drawing
+     * The new layer is added at the top of the stack
+     */
     private void addLayer() {
         String name = "Layer " + (layers.size() + 1);
         Layer layer = new Layer(name);
-        layers.add(0, layer); // 添加到顶部
+        layers.add(0, layer); // Add to the top
         listModel.add(0, layer);
         layerList.setSelectedValue(layer, true);
         drawingPanel.setCurrentLayer(layer);
     }
     
+    /**
+     * Deletes the currently selected layer
+     * Shows a confirmation dialog before deleting
+     * Prevents deleting the last remaining layer
+     */
     private void deleteLayer() {
         Layer selectedLayer = layerList.getSelectedValue();
         if (selectedLayer != null && layers.size() > 1) {
             int index = layers.indexOf(selectedLayer);
             
-            // 确认对话框
+            // Show confirmation dialog
             int response = JOptionPane.showConfirmDialog(
                 this,
                 "Are you sure you want to delete the layer '" + selectedLayer.getName() + "'?",
@@ -153,6 +174,10 @@ public class LayerPanel extends JPanel {
         }
     }
     
+    /**
+     * Moves the selected layer up in the stack (higher z-index)
+     * This makes the layer appear on top of the layer that was previously above it
+     */
     private void moveLayerUp() {
         int selectedIndex = layerList.getSelectedIndex();
         if (selectedIndex > 0) {
@@ -165,6 +190,10 @@ public class LayerPanel extends JPanel {
         }
     }
     
+    /**
+     * Moves the selected layer down in the stack (lower z-index)
+     * This makes the layer appear below the layer that was previously under it
+     */
     private void moveLayerDown() {
         int selectedIndex = layerList.getSelectedIndex();
         if (selectedIndex < layers.size() - 1) {
@@ -177,11 +206,19 @@ public class LayerPanel extends JPanel {
         }
     }
     
+    /**
+     * Gets the list of all layers
+     * 
+     * @return ArrayList of all layers
+     */
     public ArrayList<Layer> getLayers() {
         return layers;
     }
     
-    // 自定义渲染器，显示图层名称和可见性图标
+    /**
+     * Custom renderer for the layer list items
+     * Shows layer name and visibility icon for each layer
+     */
     private class LayerListCellRenderer extends DefaultListCellRenderer {
         private final ImageIcon visibleIcon = createVisibleIcon();
         private final ImageIcon hiddenIcon = createHiddenIcon();
@@ -195,10 +232,10 @@ public class LayerPanel extends JPanel {
                 Layer layer = (Layer) value;
                 setText(layer.getName());
                 
-                // 设置可见性图标
+                // Set visibility icon
                 setIcon(layer.isVisible() ? visibleIcon : hiddenIcon);
                 
-                // 为当前选中图层添加特殊标记
+                // Add special marking for currently selected layer
                 if (layerList.getSelectedValue() == layer) {
                     setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLUE),
@@ -211,7 +248,9 @@ public class LayerPanel extends JPanel {
             return this;
         }
         
-        // 创建可见性图标
+        /**
+         * Creates an icon showing an eye for visible layers
+         */
         private ImageIcon createVisibleIcon() {
             BufferedImage image = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = (Graphics2D) image.getGraphics();
@@ -224,7 +263,9 @@ public class LayerPanel extends JPanel {
             return new ImageIcon(image);
         }
         
-        // 创建隐藏图标
+        /**
+         * Creates an icon showing a crossed-out eye for hidden layers
+         */
         private ImageIcon createHiddenIcon() {
             BufferedImage image = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = (Graphics2D) image.getGraphics();
