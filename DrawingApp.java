@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.border.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -20,7 +19,6 @@ public class DrawingApp extends JFrame {
     private JToolBar propertiesBar;
     private JLabel statusLabel;
     // Constants for UI sizes and colors
-    private static final int TOOLBAR_ICON_SIZE = 24;
     private static final Color DARK_BG_COLOR = new Color(220, 220, 220);
     private static final Color MID_BG_COLOR = new Color(240, 240, 240);
     private static final Color LIGHT_BG_COLOR = new Color(250, 250, 250);

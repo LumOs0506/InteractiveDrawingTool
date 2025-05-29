@@ -1,7 +1,6 @@
 import java.awt.*;
-import java.io.Serializable;
 
-public class Text extends Shape implements Serializable {
+public class Text extends Shape{
     private String text;
     private Font font;
     

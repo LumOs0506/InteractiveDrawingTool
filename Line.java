@@ -1,11 +1,11 @@
 import java.awt.*;
-import java.io.Serializable;
+
 
 /**
  * Line class represents a straight line shape
  * This allows users to draw lines by clicking at a start point and dragging to an end point
  */
-public class Line extends Shape implements Serializable {
+public class Line extends Shape {
     /**
      * Constructor for creating a new line
      * 

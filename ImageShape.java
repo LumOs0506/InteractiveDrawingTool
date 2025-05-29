@@ -1,13 +1,12 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
 /**
  * ImageShape class represents an image that can be added to the drawing
  * This allows users to insert photos or other images into their drawings
  * Images can be resized and moved like other shapes
  */
-public class ImageShape extends Shape implements Serializable {
+public class ImageShape extends Shape{
     private BufferedImage image;  // The actual image data
     private int width;            // Width of the displayed image
     private int height;           // Height of the displayed image

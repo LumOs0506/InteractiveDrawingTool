@@ -346,6 +346,7 @@ public class DrawingPanel extends JPanel {
     /**
      * Convert canvas X coordinate to screen coordinate
      */
+    @SuppressWarnings("unused")
     private int canvasToScreenX(int canvasX) {
         return (int)(canvasX * zoomFactor + panX);
     }
@@ -353,6 +354,7 @@ public class DrawingPanel extends JPanel {
     /**
      * Convert canvas Y coordinate to screen coordinate
      */
+    @SuppressWarnings("unused")
     private int canvasToScreenY(int canvasY) {
         return (int)(canvasY * zoomFactor + panY);
     }

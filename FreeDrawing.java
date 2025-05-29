@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +6,7 @@ import java.util.ArrayList;
  * This allows users to draw smooth curves by tracking mouse movement
  * Similar to the brush or pencil tool in graphics programs
  */
-public class FreeDrawing extends Shape implements Serializable {
+public class FreeDrawing extends Shape{
     private ArrayList<Point> points;  // List of points that make up the drawing
     
     /**

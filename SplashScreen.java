@@ -14,7 +14,6 @@ public class SplashScreen extends JWindow {
     // Constants for splash screen size and timing
     private static final int SPLASH_WIDTH = 500;
     private static final int SPLASH_HEIGHT = 300;
-    private static final int DISPLAY_TIME = 3000; // 3 seconds
     
     // UI components and animation properties
     private JProgressBar progressBar;    // Shows loading progress

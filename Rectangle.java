@@ -1,12 +1,11 @@
 import java.awt.*;
-import java.io.Serializable;
 
 /**
  * Rectangle class represents a rectangular shape
  * This allows users to draw rectangles by dragging from one corner to another
  * Creates a square if width and height are equal
  */
-public class Rectangle extends Shape implements Serializable {
+public class Rectangle extends Shape{
     /**
      * Constructor for creating a new rectangle
      * 

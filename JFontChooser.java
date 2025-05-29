@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
 
 /**
  * JFontChooser provides a dialog for selecting fonts

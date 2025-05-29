@@ -1,12 +1,11 @@
 import java.awt.*;
-import java.io.Serializable;
 
 /**
  * Circle class represents a circle or oval shape
  * This allows users to draw circles by dragging from one corner to another
  * The shape will be an oval if width and height are different
  */
-public class Circle extends Shape implements Serializable {
+public class Circle extends Shape {
     /**
      * Constructor for creating a new circle/oval
      * 

@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.io.Serializable;
 
 /**
  * TextShape class represents text that can be added to the drawing
