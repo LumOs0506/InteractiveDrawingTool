@@ -76,11 +76,15 @@ A Java-based drawing application with layer support, similar to basic image edit
 - Swing and AWT libraries (included in standard Java installation)
 
 ## Building and Running
-1. Compile the Java files:
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/LumOs0506/InteractiveDrawingTool.git
+   ```
+3. Compile the Java files:
    ```bash
    javac *.java
    ```
-2. Run the application:
+4. Run the application:
    ```bash
    java DrawingApp
    ```
