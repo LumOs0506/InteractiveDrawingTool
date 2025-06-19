@@ -35,11 +35,13 @@ public class Rectangle extends Shape{
         int width = Math.abs(x2 - x1);
         int height = Math.abs(y2 - y1);
         
-        // Draw either a filled or outlined rectangle
         if (filled) {
             g2d.fillRect(x, y, width, height);
         } else {
+            Stroke originalStroke = g2d.getStroke();
+            g2d.setStroke(new BasicStroke(strokeWidth));
             g2d.drawRect(x, y, width, height);
+            g2d.setStroke(originalStroke);
         }
         
         // Draw selection handles if this shape is selected

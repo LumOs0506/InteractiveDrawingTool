@@ -39,7 +39,10 @@ public class Circle extends Shape {
         if (filled) {
             g2d.fillOval(x, y, width, height);
         } else {
+            Stroke originalStroke = g2d.getStroke();
+            g2d.setStroke(new BasicStroke(strokeWidth));
             g2d.drawOval(x, y, width, height);
+            g2d.setStroke(originalStroke);
         }
         
         // Draw selection handles if this shape is selected
