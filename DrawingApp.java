@@ -65,7 +65,7 @@ public class DrawingApp extends JFrame {
         // Create the drawing panel - this is where users will draw
         drawingPanel = new DrawingPanel();
         drawingPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        drawingPanel.setBackground(Color.WHITE);
+//        drawingPanel.setBackground(Color.WHITE);
         
         // Create the layer panel - shows all layers in the drawing
         LayerPanel layerPanel = new LayerPanel(drawingPanel);

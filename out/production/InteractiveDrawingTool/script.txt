@@ -1,0 +1,61 @@
+ARCHITECTURE OVERVIEW
+
+Alright, so let's talk about how this drawing app is built. We've got five main pieces that work together:
+
+First, there's DrawingApp - that's basically our main window with all the buttons and menus you see. It's like the face of the application that you interact with.
+
+Then we have DrawingPanel - think of this as the actual canvas where you draw. It's the white space in the middle where all your artwork happens.
+
+The Shape class is super important - it's like a template for all the different things you can draw. Lines, circles, rectangles - they're all based on this Shape concept.
+
+Layer is pretty cool - it's like having transparent sheets stacked on top of each other. You can draw on different layers and then show or hide them, move them up or down. Kind of like in Photoshop if you've ever used that.
+
+And finally, LayerPanel is the little control panel that lets you manage all those layers - create new ones, delete them, rearrange them.
+
+CLASS HIERARCHY
+
+So how do these pieces fit together? Well, Shape is like the parent class, and then we have all these specific shapes that inherit from it.
+
+[POINT TO DIAGRAM]
+
+We've got Line, Rectangle, Circle, TextShape, and FreeDrawing. They all take the basic properties from Shape but then implement their own specific drawing behavior.
+
+The Layer class contains multiple shapes, and DrawingPanel manages multiple layers plus handles all the mouse clicks and keyboard stuff.
+
+CORE COMPONENT: SHAPE
+
+Let's dive a bit deeper into Shape. This is an abstract class, which means it defines a blueprint that other classes follow, but you can't create a generic "Shape" on its own.
+
+Every shape has some basic properties - coordinates for where it starts and ends, a color, whether it's filled or just an outline, and whether it's currently selected.
+
+It also has methods for things like checking if you clicked on the shape, drawing those little handles when it's selected, and moving it around.
+
+The cool thing is that each specific shape type - like Circle or Rectangle - implements its own draw method. So when the app says "hey, draw yourself," each shape knows exactly how to do that.
+
+CORE COMPONENT: LAYER
+
+The Layer class is basically a container for shapes. Think of it like a transparent sheet that can hold multiple shapes.
+
+Each layer has a name, a list of shapes, and properties like whether it's visible or selected. When it's time to draw, the layer loops through all its shapes and tells each one to draw itself - but only if the layer is visible.
+
+It also has this neat method getShapeAt() that figures out which shape you clicked on. It checks from top to bottom, so if shapes overlap, you get the one on top.
+
+CORE COMPONENT: DRAWING PANEL
+
+DrawingPanel is where most of the action happens. It's the canvas where you actually draw stuff.
+
+It manages a list of layers, keeps track of what tool is selected, handles mouse and keyboard events, and implements features like undo/redo.
+
+When you click and drag to draw something, DrawingPanel creates the appropriate shape based on what tool you've selected, updates it as you drag, and adds it to the current layer when you release the mouse.
+
+It also handles things like selecting shapes, moving them, resizing them, and all that zoom and pan functionality when you need to focus on details.
+
+CORE COMPONENT: DRAWING APP
+
+Finally, DrawingApp is the main application window. It creates all the UI components like menus, toolbars, and panels.
+
+It sets up the drawing panel in the center, the toolbar with drawing tools on the left, properties panel on the right, and layer panel at the bottom right.
+
+It also handles all the menu actions like opening and saving files, choosing colors and fonts, and so on.
+
+Think of DrawingApp as the conductor that coordinates all the other components and provides the interface for you to interact with them. 

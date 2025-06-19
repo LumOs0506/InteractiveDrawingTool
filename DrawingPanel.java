@@ -524,6 +524,8 @@ public class DrawingPanel extends JPanel {
      * Paint the drawing panel with all layers and shapes
      * This method is called automatically by Swing
      */
+
+    // similar to private methods in that they cannot be accessed in the public scope. Neither the client nor the program can invoke them. objects of the same class can access each other’s protected methods.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -532,7 +534,7 @@ public class DrawingPanel extends JPanel {
         // Store original transform
         AffineTransform originalTransform = g2d.getTransform();
         
-        // Enable antialiasing for smoother drawing
+        // Enable antialiasing for smoother drawing, input choice of algorithm when rendering
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Apply zoom and pan transformations

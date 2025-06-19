@@ -1,0 +1,445 @@
+PWD /Users/xiaochuanqian/Desktop/Pinghe Stuff/G11 2nd semester/AP CSA/InteractiveDrawingTool
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt
+INPUT /Users/xiaochuanqian/Desktop/Pinghe Stuff/G11 2nd semester/AP CSA/InteractiveDrawingTool/presentation.tex
+OUTPUT presentation.log
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamer.cls
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamer.cls
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasemodes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasemodes.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasedecode.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasedecode.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/iftex/iftex.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/iftex/iftex.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseoptions.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseoptions.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/keyval.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/keyval.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hyperref.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/iftex/ifvtex.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/iftex/ifvtex.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.cfg
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.cfg
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/geometry/geometry.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/math/pgfmath.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/math/pgfmath.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfutil-common.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfutil-latex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfrcs.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/pgf.revision.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/pgf.revision.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/pgfkeys.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathutil.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathparser.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathcalc.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfmathfloat.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/size11.clo
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/size11.clo
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/size11.clo
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/basiclayer/pgfcore.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphicx.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphicx.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphics.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/graphics.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/trig.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/trig.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-def/pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-def/pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-def/pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/systemlayer/pgfsys.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgf.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/color.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/color.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics-cfg/color.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/mathcolor.ltx
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/mathcolor.ltx
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/graphics/mathcolor.ltx
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcore.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/math/pgfint.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/xxcolor.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/pgf/utilities/xxcolor.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/atbegshi/atbegshi.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/atbegshi-ltx.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/atbegshi-ltx.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hyperref.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hycolor/hycolor.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/hycolor/hycolor.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/nameref.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/nameref.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/refcount/refcount.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/refcount/refcount.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/gettitlestring/gettitlestring.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/gettitlestring/gettitlestring.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/kvoptions/kvoptions.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/kvoptions/kvoptions.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/stringenc/stringenc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/stringenc/stringenc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/pd1enc.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/pd1enc.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/pd1enc.def
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/intcalc/intcalc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/intcalc/intcalc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/puenc.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/puenc.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/puenc.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/bitset/bitset.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/bitset/bitset.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hpdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hpdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/hyperref/hpdftex.def
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/atveryend/atveryend.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/atveryend-ltx.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/base/atveryend-ltx.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaserequires.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaserequires.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasecompatibility.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasecompatibility.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasefont.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasefont.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/amssymb.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/amssymb.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/amsfonts.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/amsfonts.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/sansmathaccent.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/sansmathaccent.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/sansmathaccent.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlfile.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlfile.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlfile.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlfile-hook.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlfile-hook.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlogo.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/koma-script/scrlogo.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetranslator.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetranslator.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasemisc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasemisc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetwoscreens.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetwoscreens.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseoverlay.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseoverlay.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetitle.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetitle.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasesection.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasesection.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframe.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframe.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseverbatim.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseverbatim.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframesize.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframesize.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframecomponents.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseframecomponents.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasecolor.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasecolor.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenotes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenotes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetoc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetoc.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetemplates.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetemplates.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseauxtemplates.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseauxtemplates.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseboxes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaseboxes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaselocalstructure.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbaselocalstructure.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/enumerate.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/enumerate.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigation.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigation.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigationsymbols.tex
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigationsymbols.tex
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigationsymbols.tex
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigationsymbols.tex
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasenavigationsymbols.tex
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetheorems.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasetheorems.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsmath.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsmath.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsopn.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amstext.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amstext.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsgen.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsgen.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsbsy.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsbsy.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsmath/amsopn.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amscls/amsthm.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amscls/amsthm.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasethemes.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerbasethemes.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss10.tfm
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerfontthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerfontthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerinnerthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerinnerthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.pdf
+OUTPUT presentation.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonbook.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericonarticle.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamericononline.20.pdf
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerouterthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerouterthemedefault.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerthemeMadrid.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerthemeMadrid.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemewhale.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemewhale.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemeorchid.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemeorchid.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerinnerthemerounded.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerinnerthemerounded.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerouterthemeinfolines.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamerouterthemeinfolines.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemedolphin.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/beamer/beamercolorthemedolphin.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/listings.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/listings.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstpatch.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstpatch.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstpatch.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstmisc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstmisc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/lstmisc.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/listings.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/listings.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/listings/listings.cfg
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption3.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption3.sty
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption-beamer.sto
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption-beamer.sto
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/caption/caption-beamer.sto
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
+INPUT ./presentation.aux
+INPUT ./presentation.aux
+INPUT presentation.aux
+OUTPUT presentation.aux
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
+INPUT ./presentation.out
+INPUT ./presentation.out
+INPUT presentation.out
+INPUT presentation.out
+INPUT ./presentation.out
+INPUT ./presentation.out
+OUTPUT presentation.out
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-basic-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-basic-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-basic-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-bibliography-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-bibliography-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-bibliography-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-environment-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-environment-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-environment-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-months-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-months-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-months-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-numbers-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-numbers-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-numbers-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-theorem-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-theorem-dictionary-English.dict
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator-theorem-dictionary-English.dict
+INPUT ./presentation.nav
+INPUT ./presentation.nav
+INPUT presentation.nav
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss8.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss12.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss8.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss8.tfm
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi8.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi6.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmsy8.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmex10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsa.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsa.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsa.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsb.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsb.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsb.fd
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
+INPUT /Users/xiaochuanqian/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT ./images/model-view-controller-light-blue.png
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss10.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmtt10.tfm
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmtt10.tfm
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+OUTPUT presentation.vrb
+INPUT ./presentation.vrb
+INPUT ./presentation.vrb
+INPUT presentation.vrb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmss12.tfm
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmssbx10.tfm
+OUTPUT presentation.nav
+OUTPUT presentation.toc
+OUTPUT presentation.snm
+INPUT presentation.aux
+INPUT ./presentation.out
+INPUT ./presentation.out
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss8.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss8.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+INPUT /Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt10.pfb

@@ -1,0 +1,35 @@
+\frametitle{Code Example: Drawing a Shape}
+\begin{verbatim}
+// In Rectangle.java
+public void draw(Graphics g) {
+    Graphics2D g2d = (Graphics2D) g;
+
+    // Save original stroke
+    Stroke originalStroke = g2d.getStroke();
+
+    // Set stroke width
+    g2d.setStroke(new BasicStroke(strokeWidth));
+
+    // Set the color
+    g2d.setColor(color);
+
+    // Calculate actual rectangle coordinates
+    int x = Math.min(x1, x2);
+    int y = Math.min(y1, y2);
+    int width = Math.abs(x2 - x1);
+    int height = Math.abs(y2 - y1);
+
+    // Draw filled or outline rectangle
+    if (filled) {
+        g2d.fillRect(x, y, width, height);
+    } else {
+        g2d.drawRect(x, y, width, height);
+    }
+
+    // Restore original stroke
+    g2d.setStroke(originalStroke);
+
+    // Draw selection handles if selected
+    drawSelectionHandles(g);
+}
+\end{verbatim}
