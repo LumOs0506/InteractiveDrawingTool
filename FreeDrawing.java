@@ -141,4 +141,33 @@ public class FreeDrawing extends Shape{
         // Return distance from point to projection
         return Math.sqrt((x - projX) * (x - projX) + (y - projY) * (y - projY));
     }
+    
+    @Override
+    protected void drawSelectionHandles(Graphics g) {
+        if (!selected || points.isEmpty()) return;
+        int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE;
+        int maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
+        for (Point p : points) {
+            if (p.x < minX) minX = p.x;
+            if (p.y < minY) minY = p.y;
+            if (p.x > maxX) maxX = p.x;
+            if (p.y > maxY) maxY = p.y;
+        }
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.BLUE);
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawRect(minX, minY, maxX - minX, maxY - minY);
+        // Draw white squares at each corner for resizing
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(minX - HANDLE_SIZE/2, minY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.fillRect(maxX - HANDLE_SIZE/2, minY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.fillRect(minX - HANDLE_SIZE/2, maxY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.fillRect(maxX - HANDLE_SIZE/2, maxY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        // Draw blue outlines around the white handles
+        g2d.setColor(Color.BLUE);
+        g2d.drawRect(minX - HANDLE_SIZE/2, minY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.drawRect(maxX - HANDLE_SIZE/2, minY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.drawRect(minX - HANDLE_SIZE/2, maxY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+        g2d.drawRect(maxX - HANDLE_SIZE/2, maxY - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+    }
 } 
