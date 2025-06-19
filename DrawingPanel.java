@@ -48,6 +48,8 @@ public class DrawingPanel extends JPanel {
     private static final double MAX_ZOOM = 5.0;
     private static final double ZOOM_STEP = 0.1;
     
+    private LayerPanel layerPanel; // Add reference to LayerPanel
+    
     /**
      * Constructor - initializes the drawing panel and sets up event listeners
      */
@@ -417,12 +419,22 @@ public class DrawingPanel extends JPanel {
     }
     
     /**
+     * Set the LayerPanel reference so DrawingPanel can notify it of layer changes
+     */
+    public void setLayerPanel(LayerPanel layerPanel) {
+        this.layerPanel = layerPanel;
+    }
+    
+    /**
      * Set the layers for this drawing panel
      */
     public void setLayers(ArrayList<Layer> layers) {
         this.layers = layers;
         if (!layers.isEmpty() && currentLayer == null) {
             currentLayer = layers.get(0);
+        }
+        if (layerPanel != null) {
+            layerPanel.setLayers(layers);
         }
     }
     
@@ -459,6 +471,9 @@ public class DrawingPanel extends JPanel {
             ArrayList<Layer> currentState = new ArrayList<>(layers);
             redoStack.push(currentState);
             layers = undoStack.pop();
+            if (layerPanel != null) {
+                layerPanel.setLayers(layers);
+            }
             repaint();
         }
     }
@@ -471,6 +486,9 @@ public class DrawingPanel extends JPanel {
             ArrayList<Layer> currentState = new ArrayList<>(layers);
             undoStack.push(currentState);
             layers = redoStack.pop();
+            if (layerPanel != null) {
+                layerPanel.setLayers(layers);
+            }
             repaint();
         }
     }
@@ -492,6 +510,10 @@ public class DrawingPanel extends JPanel {
         Layer initialLayer = new Layer("Layer 1");
         layers.add(initialLayer);
         currentLayer = initialLayer;
+        
+        if (layerPanel != null) {
+            layerPanel.setLayers(layers);
+        }
         
         repaint();
     }
@@ -525,7 +547,7 @@ public class DrawingPanel extends JPanel {
      * This method is called automatically by Swing
      */
 
-    // similar to private methods in that they cannot be accessed in the public scope. Neither the client nor the program can invoke them. objects of the same class can access each other’s protected methods.
+    // similar to private methods in that they cannot be accessed in the public scope. Neither the client nor the program can invoke them. objects of the same class can access each other's protected methods.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -216,6 +216,28 @@ public class LayerPanel extends JPanel {
     }
     
     /**
+     * Updates the layers list and UI to match the new layers
+     */
+    public void setLayers(ArrayList<Layer> layers) {
+        this.layers = layers;
+        listModel.clear();
+        for (Layer layer : layers) {
+            listModel.addElement(layer);
+        }
+        // Try to keep the same selected layer if possible
+        if (!layers.isEmpty()) {
+            Layer selected = drawingPanel.getCurrentLayer();
+            if (selected != null && layers.contains(selected)) {
+                layerList.setSelectedValue(selected, true);
+            } else {
+                layerList.setSelectedIndex(0);
+                drawingPanel.setCurrentLayer(layers.get(0));
+            }
+        }
+        repaint();
+    }
+    
+    /**
      * Custom renderer for the layer list items
      * Shows layer name and visibility icon for each layer
      */

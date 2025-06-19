@@ -69,6 +69,7 @@ public class DrawingApp extends JFrame {
         
         // Create the layer panel - shows all layers in the drawing
         LayerPanel layerPanel = new LayerPanel(drawingPanel);
+        drawingPanel.setLayerPanel(layerPanel);
         layerPanel.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createMatteBorder(1, 1, 0, 0, Color.GRAY),
             BorderFactory.createEmptyBorder(5, 5, 5, 5)
